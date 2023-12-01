@@ -19,7 +19,7 @@
 // LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+#include <iostream>
 #include "stdlib.h"
 #include "divsufsort.h"
 #include "SA.h"
@@ -30,6 +30,7 @@ using uchar = unsigned char;
 parlay::sequence<uint> suffixArray(parlay::sequence<uchar> const &s) {
   size_t n = s.size();
   parlay::sequence<uint> A(n);
-  divsufsort(s.begin(), (int*) A.begin(), (int) n);
+  int r = divsufsort(s.begin(), (int*) A.begin(), (int) n);
+  if (r != 0) { std::cerr << "divsufsort returned non-zero return value : " << r << "\n"; }
   return A;
 }
